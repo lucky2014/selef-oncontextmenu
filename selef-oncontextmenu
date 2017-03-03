@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body{
+	height:1000px;
+}
+#menu {
+	width:100px; 
+	height: 200px; 
+	border: 1px solid red;
+	top:0;
+	left:0;
+	position: absolute; 
+	display: none;
+}
+</style>
+</head>
+<script>
+window.onload=function(){
+	var selfMenu=document.getElementById("menu");
+	document.oncontextmenu=function(ev){
+		//var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+		var ev=ev||event;
+		selfMenu.style.display="block";	
+		selfMenu.style.left=ev.clientX+"px";
+		//selfMenu.style.top=ev.clientY+scrollTop+"px";
+		selfMenu.style.top=ev.clientY+(document.documentElement.scrollTop||document.body.scrollTop)+"px";
+
+		//console.log(ev.clientY+"clent Y AND --"+scrollTop);
+
+		return false;//阻止点击右键时的默认行文
+	}
+
+	document.onclick=function(){
+		selfMenu.style.display="none";	
+	};
+} 
+</script>
+<body>
+<div id="menu" ></div>
+</body>
+</html>
